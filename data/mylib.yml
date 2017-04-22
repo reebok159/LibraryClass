@@ -1,0 +1,177 @@
+--- !ruby/object:Library
+books:
+- !ruby/object:Book
+  id: 6
+  title: The Old Man and the Sea
+  author: &1 !ruby/object:Author
+    id: 1
+    name: E. Hemingway
+    biography: ''
+- !ruby/object:Book
+  id: 7
+  title: It Our Time
+  author: *1
+- !ruby/object:Book
+  id: 8
+  title: The Garden of Eden
+  author: *1
+- &6 !ruby/object:Book
+  id: 9
+  title: War and Peace
+  author: &2 !ruby/object:Author
+    id: 2
+    name: L. Tolstoy
+    biography: ''
+- !ruby/object:Book
+  id: 10
+  title: Anna Karenina
+  author: *2
+- !ruby/object:Book
+  id: 11
+  title: Great Short Works
+  author: *2
+- !ruby/object:Book
+  id: 12
+  title: The Cossacks
+  author: *2
+- !ruby/object:Book
+  id: 13
+  title: The Master and Margarita
+  author: &3 !ruby/object:Author
+    id: 3
+    name: M. Bulgakov
+    biography: ''
+- &7 !ruby/object:Book
+  id: 14
+  title: Heart of a Dog
+  author: *3
+- &9 !ruby/object:Book
+  id: 15
+  title: Crime and Punishment
+  author: &4 !ruby/object:Author
+    id: 4
+    name: F. Dostoevsky
+    biography: ''
+- &10 !ruby/object:Book
+  id: 16
+  title: The Brothers Karamazov
+  author: *4
+- &11 !ruby/object:Book
+  id: 17
+  title: The Idiot
+  author: *4
+- &12 !ruby/object:Book
+  id: 18
+  title: Hamlet
+  author: &5 !ruby/object:Author
+    id: 5
+    name: W. Shakespeare
+    biography: ''
+- !ruby/object:Book
+  id: 19
+  title: Romeo and Juliet
+  author: *5
+- !ruby/object:Book
+  id: 20
+  title: Othello
+  author: *5
+- !ruby/object:Book
+  id: 21
+  title: Shakespeare's Sonnets
+  author: *5
+orders:
+- !ruby/object:Order
+  id: 26
+  book: *6
+  reader: &8 !ruby/object:Reader
+    id: 22
+    name: Petr Petrov
+    email: pp223@gmail.com
+    city: ''
+    street: ''
+    house: ''
+  date: 2016-01-01
+- !ruby/object:Order
+  id: 27
+  book: *7
+  reader: *8
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 28
+  book: *9
+  reader: *8
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 29
+  book: *10
+  reader: *8
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 30
+  book: *11
+  reader: *8
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 31
+  book: *12
+  reader: *8
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 32
+  book: *9
+  reader: &14 !ruby/object:Reader
+    id: 23
+    name: Ivan Ivanov
+    email: ivanich@gmail.com
+    city: Moskow
+    street: Gagarina
+    house: '76'
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 33
+  book: *9
+  reader: &13 !ruby/object:Reader
+    id: 24
+    name: Nikolay Grishin
+    email: tsetter@mail.ru
+    city: ''
+    street: ''
+    house: ''
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 34
+  book: *10
+  reader: &15 !ruby/object:Reader
+    id: 25
+    name: Alexandr Myasnikov
+    email: myasnikov123@gmail.com
+    city: Kiev
+    street: ''
+    house: ''
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 35
+  book: *10
+  reader: *13
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 36
+  book: *10
+  reader: *14
+  date: 2017-04-22
+- !ruby/object:Order
+  id: 37
+  book: *12
+  reader: *14
+  date: 2017-04-22
+readers:
+- *8
+- *14
+- *13
+- *15
+authors:
+- *1
+- *3
+- *4
+- *5
+- *2
