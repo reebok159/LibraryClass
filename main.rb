@@ -1,4 +1,4 @@
-require "./classes/Library.rb"
+require "./classes/library.rb"
 
 lib = Library.new
 lib.loadLibrary
