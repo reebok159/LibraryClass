@@ -17,56 +17,47 @@ class Library
     @authors = []
   end
 
-  def addItem(*args)
+  def add_item(*args)
     args.each do |item|
       str_name = "@#{item.class}s".downcase;
-      next unless instance_variable_defined?( str_name.to_sym )
-      arrayName = eval(str_name)
-      if arrayName
-        self.addItem(item.author) if item.is_a?(Book)
+      next unless arrayName = eval(str_name)
+      self.add_item(item.author) if item.is_a?(Book)
 
-        if item.is_a?(Order)
-          self.addItem(item.book)
-         self.addItem(item.reader)
-        end
-
-        arrayName << item if !arrayName.include?(item)
+      if item.is_a?(Order)
+        self.add_item(item.book)
+        self.add_item(item.reader)
       end
+
+      arrayName << item if !arrayName.include?(item)
     end
   end
 
-  def getOftenReader
+  def get_often_reader
     return "not found" if orders.size == 0
     result = @orders.group_by{ |item| item.reader.id }.sort_by{ |id_reader, reader| -reader.count }
     result.map!{ |item| item[1] }
     result[0].first.reader
   end
 
-  def mostPopularBook
+  def most_popular_book
     return "not found" if orders.size == 0
-    result = getGroupedOrders
-    result[0].first.book
+    get_grouped_orders[0].first.book
   end
 
-  def howManyGet3PopularBooks
+  def how_many_get3popular_books
     return 0 if orders.size == 0
-    grouped_orders = getGroupedOrders
-    three_books_in_groups = grouped_orders.first(3)
-    common_group = []
-
-    three_books_in_groups.each {|item| common_group |= item }
-    total = common_group.uniq{ |item| item.reader.id }.count
-    total
+    three_books_in_groups = get_grouped_orders.first(3)
+    three_books_in_groups.flatten.uniq{ |item| item.reader.id }.count
   end
 
-  def getGroupedOrders
+  def get_grouped_orders
     result = @orders.group_by{ |item| item.book.id }.sort_by{ |id_book, book| -book.count }
     result.map!{ |item| item[1] }
     result
   end
 
 
-  def saveLibrary(path = './data/lib.yml')
+  def save_library(path = './data/lib.yml')
     begin
       file = File.open(path, 'w') { |file| file.write self.to_yaml }
     rescue Exception => e
@@ -74,7 +65,7 @@ class Library
     end
   end
 
-  def loadLibrary(path = './data/lib.yml')
+  def load_library(path = './data/lib.yml')
     begin
       file = YAML.load_file(path)
       Index.reset
@@ -83,13 +74,9 @@ class Library
       @readers = []
       @authors = []
 
-      file.readers.each { |item| self.addItem(item) }
-      file.authors.each { |item| self.addItem(item) }
-      file.books.each { |item| self.addItem(item) }
-      file.orders.each { |item| self.addItem(item) }
+      file.instance_variables.each { |item| file.instance_variable_get(item).each { |item2| self.add_item(item2) } }
     rescue Exception => e
       puts "Couldn't open file \n#{e}"
    end
   end
 end
-
