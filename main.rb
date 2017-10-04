@@ -1,7 +1,7 @@
-require "./classes/Library.rb"
+require "./classes/library.rb"
 
 lib = Library.new
-lib.loadLibrary
+lib.load_library
 
 
 
@@ -17,9 +17,9 @@ puts "----"
 
 
 
-puts "Top reader: " + lib.getOftenReader.to_s
+puts "Top reader: " + lib.get_often_reader.to_s
 
-puts "Top book: " + lib.mostPopularBook.to_s
-puts "Number of people which ordered one of the three most popular books: " + lib.howManyGet3PopularBooks.to_s
+puts "Top book: " + lib.most_popular_book.to_s
+puts "Number of people which ordered one of the three most popular books: " + lib.how_many_get3popular_books.to_s
 
 
